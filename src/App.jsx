@@ -7,6 +7,7 @@ import CurrentList from "./components/pages/CurrentList";
 import MovieDetails from "./components/pages/MovieDetails";
 import { Route, Routes, Link } from "react-router-dom";
 import Loading from "./components/Loading";
+import ProfilePage from "./components/Profile";
 
 import "./index.css";
 

@@ -281,6 +281,20 @@ nav {
   font-size: 0.95rem;
 }
 
+.yellow-button {
+  background-color: #ffc107;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+.yellow-button:hover {
+  background-color: #e59800;
+}
+
 /* Media Queries */
 @media screen and (max-width: 1200px) {
   .movie-poster {

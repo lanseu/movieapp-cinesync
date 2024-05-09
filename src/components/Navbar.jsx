@@ -11,6 +11,9 @@ const Navbar = () => {
         <Link to="/">Cinepedia</Link>
       </h1>
       <img className="attribution" src={tmdb} alt=""></img>
+      <Link to="/Profile" className="profile-button yellow-button">
+        Profile
+      </Link>
     </nav>
   );
 };
