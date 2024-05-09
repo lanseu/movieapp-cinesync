@@ -1,13 +1,556 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@400;600&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Rubik", sans-serif;
+  background-color: #171717;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  display: flex;
+  align-items: center;
+  padding: 10px 100px;
+  background-color: #000000;
+  color: white;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.title a {
+  color: white;
+  text-decoration: none;
+}
+
+.attribution {
+  width: 50px;
+  height: 25px;
+  margin-left: auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 20px;
+  background-color: #000000;
+}
+
+.search-bar {
+  background-color: white;
+}
+
+.search-icon {
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  margin: 0 5px 0 15px;
+}
+
+.search {
+  border: 0;
+  width: 400px;
+  height: 38px;
+  font-size: 1rem;
+  padding-right: 10px;
+}
+
+.search:focus {
+  border: 0;
+  outline: 0;
+}
+
+.search-btn {
+  height: 40px;
+  width: 90px;
+  margin-left: 12px;
+  background-color: #ffe227;
+  border: 0;
+}
+
+.search-btn:hover {
+  background-color: #ffcc1d;
+}
+
+.search-btn a {
+  color: #171717;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.collections {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 600px;
+  margin: 20px 100px 0;
+}
+
+.collections-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.collections > .collections-inner > p {
+  margin: 6px 0 0;
+}
+
+.trending-icon,
+.now-playing-icon,
+.top-rated-icon,
+.upcoming-icon {
+  font-size: 1.8rem;
+}
+
+.active {
+  color: #ffe227;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+
+.current-list-container {
+  margin: 50px 0;
+}
+
+.current-list-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 50px;
+  padding: 0 100px;
+}
+
+.no-results-div {
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.no-results {
+  font-size: 2.5rem;
+}
+
+.movie-card {
+  width: 200px;
+  height: 300px;
+  border: 3px solid #ffe227;
+}
+
+.movie-card:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.back-btn-container {
+  background-color: #171717;
+  padding: 10px 0 10px;
+}
+
+.back-btn {
+  font-size: 2rem;
+  margin: 0 100px;
+  color: #ffe227;
+  background-color: #171717;
+  padding: 0;
+  border: 0;
+}
+
+.back-btn a {
+  color: #ffe227;
+}
+
+.back-btn a:hover {
+  color: #ffcc1d;
+}
+
+.movie-img {
+  width: 100%;
+  height: 100%;
+}
+
+.movie-details-inner {
+  padding: 50px 100px;
+  display: flex;
+}
+
+.movie-poster {
+  width: 360px;
+  height: 540px;
+  border: 3px solid #ffe227;
+}
+
+.detail-container {
+  width: 100%;
+  padding: 0 50px;
+  color: white;
+  background-color: rgba(23, 23, 23, 0.8);
+}
+
+.detail-container > p {
+  font-size: 1rem;
+  margin: 20px 0;
+}
+
+.detail-container > p > span {
+  margin-left: 5px;
+}
+
+.movie-title {
+  font-size: 2.5rem;
+  margin: 30px 0 2px;
+}
+
+.year-and-genre {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c1cae2;
+}
+
+.overview-title {
+  font-size: 1.2rem;
+  margin: 25px 0 0;
+}
+
+.overview {
+  font-weight: 400;
+}
+
+.rating {
+  color: #ffe227;
+  font-weight: 600;
+}
+
+.cast-container {
+  margin: 50px 100px;
+}
+
+.cast-title {
+  font-size: 2rem;
+  color: white;
+}
+
+.actor-container {
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.actor-card {
+  width: 200px;
+  background-color: #171717;
+  color: white;
+  border: 3px solid #ffe227;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.actor-img {
+  width: 200px;
+  height: 280px;
+  border-bottom: 2px solid black;
+}
+
+.actor-name {
+  margin: 5px 0 2px;
+  font-size: 1.15rem;
+  padding: 0 2px;
+}
+
+.character {
+  margin: 0 0 5px;
+  padding: 0 2px;
+  font-size: 0.95rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .movie-poster {
+    height: 100%;
+  }
+
+  .detail-container {
+    padding-right: 25px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .movie-details-inner {
+    flex-direction: column;
+  }
+
+  .movie-poster {
+    width: 100%;
+  }
+
+  .detail-container {
+    width: unset;
+    padding: 0 50px 30px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .search {
+    width: 300px;
+  }
+
+  .collections {
+    width: unset;
+  }
+
+  .current-list-movies {
+    justify-items: center;
+  }
+
+  .actor-container {
+    justify-items: center;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  nav {
+    padding: 10px 50px;
+  }
+
+  .trending-icon,
+  .now-playing-icon,
+  .top-rated-icon,
+  .upcoming-icon {
+    font-size: 1.5rem;
+  }
+
+  .collections {
+    margin: 20px 50px 0;
+  }
+
+  .collections > .collections-inner > p {
+    font-size: 0.9rem;
+  }
+
+  .current-list-movies {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-gap: 40px;
+    padding: 0 50px;
+  }
+
+  .movie-card {
+    width: 180px;
+    height: 270px;
+  }
+
+  .detail-container {
+    padding: 0 20px 30px 30px;
+  }
+
+  .cast-container {
+    margin: 50px;
+  }
+
+  .actor-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .actor-card {
+    width: 180px;
+  }
+
+  .actor-img {
+    width: 180px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  nav {
+    padding: 10px 30px 20px;
+  }
+
+  .search {
+    width: 220px;
+    font-size: 0.9rem;
+  }
+
+  .search-btn {
+    width: 60px;
+  }
+
+  .search-btn a {
+    font-size: 0.9rem;
+  }
+
+  .collections {
+    margin: 20px;
+  }
+
+  .trending-icon,
+  .now-playing-icon,
+  .top-rated-icon,
+  .upcoming-icon {
+    font-size: 1.25rem;
+  }
+
+  .collections > .collections-inner > p {
+    font-size: 0.85rem;
+  }
+
+  .current-list-movies {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-gap: 30px;
+    padding: 0 30px;
+  }
+
+  .movie-card {
+    width: 160px;
+    height: 240px;
+  }
+
+  .back-btn {
+    margin: 0 30px;
+  }
+
+  .movie-details-inner {
+    padding: 50px;
+  }
+
+  .cast-container {
+    margin: 50px 30px;
+  }
+
+  .actor-container {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 30px;
+  }
+
+  .actor-card {
+    width: 160px;
+  }
+
+  .actor-img {
+    width: 160px;
+    height: 230px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  nav {
+    padding: 10px 25px 20px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .attribution {
+    width: 40px;
+    height: 20px;
+  }
+
+  .search {
+    width: 180px;
+  }
+
+  .search-icon {
+    margin-left: 10px;
+  }
+
+  .search-btn {
+    margin-left: 6px;
+  }
+
+  .trending-icon,
+  .now-playing-icon,
+  .top-rated-icon,
+  .upcoming-icon {
+    font-size: 1rem;
+  }
+
+  .collections > .collections-inner > p {
+    font-size: 0.8rem;
+  }
+
+  .current-list-movies {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-gap: 30px;
+    padding: 0 25px;
+  }
+
+  .movie-card {
+    width: 140px;
+    height: 210px;
+  }
+
+  .movie-details-inner {
+    padding: 50px 30px;
+  }
+
+  .cast-container {
+    margin: 50px 25px;
+  }
+
+  .actor-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .actor-card {
+    width: 140px;
+  }
+
+  .actor-img {
+    width: 140px;
+    height: 210px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search {
+    width: 150px;
+  }
+
+  .collections {
+    margin: 20px 6px;
+  }
+
+  .current-list-movies {
+    padding: 0 10px;
+    grid-gap: 15px;
+  }
+
+  .movie-details-inner {
+    padding: 50px 15px;
+  }
+
+  .detail-container {
+    padding: 0 15px 30px 25px;
+  }
+
+  .cast-container {
+    margin: 50px 10px;
+  }
+
+  .actor-container {
+    gap: 15px;
+  }
 }
