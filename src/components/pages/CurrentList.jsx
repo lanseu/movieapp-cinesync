@@ -10,6 +10,7 @@ const CurrentList = (props) => {
             <MovieCard
               key={movie.id}
               id={movie.id}
+              title={movie.title}
               poster={movie.poster_path}
               setMovieId={props.setMovieId}
             />

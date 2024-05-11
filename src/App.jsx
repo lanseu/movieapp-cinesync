@@ -149,7 +149,6 @@ const App = () => {
             )
           }
         />
-        {/* Include route for ProfilePage */}
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>

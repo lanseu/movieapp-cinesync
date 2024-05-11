@@ -1,20 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/logo5.jpg";
-import tmdb from "../images/tmdb.svg";
+import Logo from "../images/cinesynclogo.png";
 import ProfilePage from "./Profile";
 
 const Navbar = () => {
   return (
-    <nav>
-      <img className="logo" src={Logo} alt="Cinepedia Logo" />
-      <h1 className="title">
-        <Link to="/">Cinepedia</Link>
-      </h1>
-      <img className="attribution" src={tmdb} alt="Attribution" />
-      <Link to="/Profile" element={<ProfilePage />}>
-        Profile
-      </Link>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <h1 className="title">
+          <Link to="/">
+            <img
+              className="logo"
+              style={{ width: "200px", height: "auto" }}
+              src={Logo}
+              alt="Cinepedia Logo"
+            />
+          </Link>
+        </h1>
+      </div>
+      <div className="navbar-right">
+        <Link to="/Profile" element={<ProfilePage />}>
+          Profile
+        </Link>
+      </div>
     </nav>
   );
 };
