@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Route, Routes, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import CurrentList from "./components/pages/CurrentList";
 import MovieDetails from "./components/pages/MovieDetails";
-import { Route, Routes, Link } from "react-router-dom";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
 
@@ -149,6 +149,8 @@ const App = () => {
             )
           }
         />
+        {/* Include route for ProfilePage */}
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );
