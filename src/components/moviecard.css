@@ -28,7 +28,7 @@ p.movie-title {
   top: 0;
   left: 0;
   width: 100%;
-  height: 98%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0);
   transition: background-color 0.3s ease;
 }

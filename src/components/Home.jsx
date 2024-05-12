@@ -1,6 +1,6 @@
 import React from "react";
 import Collections from "./Collections";
-import CurrentList from "./pages/CurrentList";
+import "./homepage.css";
 
 const Homepage = (props) => {
   return (
@@ -9,12 +9,6 @@ const Homepage = (props) => {
         <Collections
           setActiveList={props.setActiveList}
           setActiveUrl={props.setActiveUrl}
-          setMovieId={props.setMovieId}
-        />
-      </div>
-      <div className="current-list-container">
-        <CurrentList
-          currentArr={props.currentArr}
           setMovieId={props.setMovieId}
         />
       </div>
