@@ -1,144 +1,124 @@
 import React, { useState } from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+import {
+  MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardBody, MDBCardImage,
+  MDBTypography, MDBCardTitle, MDBIcon, MDBBtn
+} from 'mdb-react-ui-kit';
 
 const ProfilePage = () => {
-  const [watchlists, setWatchlists] = useState([
-    { id: "Backburner", title: "Back", movies: [] },
-    { id: "watchlist2", title: "Watchlist 2", movies: [] },
-  ]);
+  const [userProfile, setUserProfile] = useState({
+    username: "JulieArsenault",
+    password: "password123",
+    bio: "Love coding and watching movies",
+    avatarUrl: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+  });
 
-  const addMovieToWatchlist = (movie, watchlistId) => {
-    setWatchlists(
-      watchlists.map((watchlist) =>
-        watchlist.id === watchlistId
-          ? { ...watchlist, movies: [...watchlist.movies, movie] }
-          : watchlist
-      )
-    );
+  const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const handleBioChange = (event) => {
+    setUserProfile({
+      ...userProfile,
+      bio: event.target.value
+    });
   };
 
-  const updateMovieInWatchlist = (updatedMovie, watchlistId) => {
-    setWatchlists(
-      watchlists.map((watchlist) =>
-        watchlist.id === watchlistId
-          ? {
-              ...watchlist,
-              movies: watchlist.movies.map((movie) =>
-                movie.id === updatedMovie.id ? updatedMovie : movie
-              ),
-            }
-          : watchlist
-      )
-    );
+  const handleUsernameChange = (event) => {
+    setUserProfile({
+      ...userProfile,
+      username: event.target.value
+    });
   };
 
-  const deleteMovieFromWatchlist = (movieId, watchlistId) => {
-    setWatchlists(
-      watchlists.map((watchlist) =>
-        watchlist.id === watchlistId
-          ? {
-              ...watchlist,
-              movies: watchlist.movies.filter((movie) => movie.id !== movieId),
-            }
-          : watchlist
-      )
-    );
+  const handlePasswordChange = (event) => {
+    setUserProfile({
+      ...userProfile,
+      password: event.target.value
+    });
+  };
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const fetchMovies = async () => {
+    const response = await fetch(`https://api.example.com/movies?query=${search}`);
+    const data = await response.json();
+    setMovies(data.results);
   };
 
   return (
     <div className="profile-page">
-      <div className="profile-info">
-      <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol md="12" xl="4">
-            <MDBCard style={{ borderRadius: '15px' }}>
+      <MDBContainer className="py-5">
+        <MDBRow className="justify-content-center">
+          <MDBCol className="mb-5 text-white" md="8">
+            <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
               <MDBCardBody className="text-center">
-                <div className="mt-3 mb-4">
-                  <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                    className="rounded-circle" fluid style={{ width: '100px' }} />
+                <MDBCardImage src={userProfile.avatarUrl}
+                  className="rounded-circle mb-4" fluid style={{ width: '150px' }} />
+                <MDBTypography tag="h4">{userProfile.username}</MDBTypography>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol className="mb-5 text-white" md="8">
+            <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
+              <MDBCardBody>
+                <MDBCardTitle>Password and Bio</MDBCardTitle>
+                <div className="d-flex align-items-center mb-3 ">
+                  <input
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
+                    value={userProfile.username}
+                    onChange={handleUsernameChange}
+                    className="form-control me-2 text-white"
+                    placeholder="Edit your username"
+                  />
+                  <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
                 </div>
-                <MDBTypography tag="h4">Julie L. Arsenault</MDBTypography>
-                <MDBCardText className="text-muted mb-4">
-                  @Programmer <span className="mx-2">|</span> <a href="#!">mdbootstrap.com</a>
-                </MDBCardText>
-                <div className="mb-4 pb-2">
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="facebook" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating className="mx-1">
-                    <MDBIcon fab icon="twitter" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="skype" size="lg" />
-                  </MDBBtn>
+                <div className="d-flex align-items-center mb-3">
+                  <input
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
+                    type="password"
+                    value={userProfile.password}
+                    onChange={handlePasswordChange}
+                    className="form-control me-2 text-white"
+                    placeholder="New Password"
+                  />
+                  <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
                 </div>
-                <MDBBtn rounded size="lg">
-                  Message now
-                </MDBBtn>
-                <div className="d-flex justify-content-between text-center mt-5 mb-2">
-                  <div>
-                    <MDBCardText className="mb-1 h5">8471</MDBCardText>
-                    <MDBCardText className="small text-muted mb-0">Wallets Balance</MDBCardText>
-                  </div>
-                  <div className="px-3">
-                    <MDBCardText className="mb-1 h5">8512</MDBCardText>
-                    <MDBCardText className="small text-muted mb-0">Followers</MDBCardText>
-                  </div>
-                  <div>
-                    <MDBCardText className="mb-1 h5">4751</MDBCardText>
-                    <MDBCardText className="small text-muted mb-0">Total Transactions</MDBCardText>
-                  </div>
+                <div className="d-flex align-items-center">
+                  <input
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
+                    value={userProfile.bio}
+                    onChange={handleBioChange}
+                    className="form-control me-2 text-white"
+                    placeholder="Edit your bio"
+                  />
+                  <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol className="mb-5 text-white" md="8">
+            <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
+              <MDBCardBody>
+                <MDBCardTitle>Add to Movie Playlist</MDBCardTitle>
+                <input style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}
+                  type="text"
+                  value={search}
+                  onChange={handleSearchChange}
+                  className="form-control mb-2"
+                  placeholder="Search movies"
+                />
+                <MDBBtn onClick={fetchMovies}>Fetch Movies</MDBBtn>
+                <div>
+                  {movies.map(movie => (
+                    <div key={movie.id}>{movie.title}</div>
+                  ))}
                 </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        <h2 className="username">backburner25!</h2>
-        <p className="bio">Nagmahal nang wagas sa wala namang label.</p>
-        <button className="edit-bio-button">Edit</button>
-        <input
-          type="password"
-          className="password-input"
-          placeholder="Password"
-        />
-        <button className="change-password-button">Change Password</button>
-        <h3 className="watchlist-title">Watchlists:</h3>
-        {watchlists.map((watchlist) => (
-          <div key={watchlist.id}>
-            <h4>{watchlist.title}</h4>
-            <ul className="watchlist">
-              {watchlist.movies.map((movie) => (
-                <li key={movie.id}>
-                  {movie.title}
-                  <button
-                    onClick={() =>
-                      deleteMovieFromWatchlist(movie.id, watchlist.id)
-                    }
-                  >
-                    Delete
-                  </button>
-                  <input
-                    type="text"
-                    value={movie.title}
-                    onChange={(e) =>
-                      updateMovieInWatchlist(
-                        { ...movie, title: e.target.value },
-                        watchlist.id
-                      )
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={() =>
-                addMovieToWatchlist({ id: Date.now(), title: "" }, watchlist.id)
-              }
-            >
-              Add Movie
-            </button>
-          </div>
-        ))}
-      </div>
+      </MDBContainer>
     </div>
   );
 };
