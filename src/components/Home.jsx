@@ -5,14 +5,19 @@ import CurrentList from "./pages/CurrentList";
 const Homepage = (props) => {
   return (
     <div className="home-container">
-      <Collections
-        setActiveList={props.setActiveList}
-        setActiveUrl={props.setActiveUrl}
-      />
-      <CurrentList
-        currentArr={props.currentArr}
-        setMovieId={props.setMovieId}
-      />
+      <div className="collections-container">
+        <Collections
+          setActiveList={props.setActiveList}
+          setActiveUrl={props.setActiveUrl}
+          setMovieId={props.setMovieId}
+        />
+      </div>
+      <div className="current-list-container">
+        <CurrentList
+          currentArr={props.currentArr}
+          setMovieId={props.setMovieId}
+        />
+      </div>
     </div>
   );
 };
