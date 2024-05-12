@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Carousel from 'react-spring-3d-carousel';
+import "./MovieDetails.css";
 
 const MovieDetails = (props) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [favorites, setFavorites] = useState([]); // State to manage favorites list
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % props.movieDetails.cast.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const trimInfo = (str, endIndex) => {
     return str.substring(0, endIndex);
   };
 
   const filterDirector = (directorArr) => {
     for (let i = 0; i < directorArr.length; i++) {
-      if (directorArr[i] !== undefined) {
+      if (directorArr[i]!== undefined) {
         return directorArr[i];
       }
     }
@@ -29,12 +42,33 @@ const MovieDetails = (props) => {
     backgroundPosition: "center",
   };
 
+  const slides = props.movieDetails.cast.map((actor) => ({
+    key: actor.id,
+    content: (
+      <div className="actor-card">
+        <img
+          src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+          alt="actor-thumbnail"
+          className="actor-img"
+        />
+        <h3 className="actor-name">{actor.name}</h3>
+        <p className="character">{actor.character}</p>
+      </div>
+    ),
+  }));
+
+  const handleAddToFavorites = () => {
+    // Add movie to favorites list
+    setFavorites([...favorites, props.movieDetails]);
+    console.log("Added to favorites!");
+  };
+
   return (
     <div className="movie-details-container">
       <div className="back-btn-container">
         <button className="back-btn">
           <Link to="/">
-            <i class="fa-solid fa-circle-arrow-left"></i>
+            <i className="fa-solid fa-circle-arrow-left"></i>
           </Link>
         </button>
       </div>
@@ -79,23 +113,12 @@ const MovieDetails = (props) => {
             Original Language:{" "}
             <span>{props.movieDetails.originalLanguage}</span>
           </p>
+          <button onClick={handleAddToFavorites} className="watchlist-btn">Add to Favorites</button>
         </div>
       </div>
       <div className="cast-container">
         <h2 className="cast-title">Cast</h2>
-        <div className="actor-container">
-          {props.movieDetails.cast.map((actor) => (
-            <div className="actor-card">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
-                alt="actor-thumbnail"
-                className="actor-img"
-              />
-              <h3 className="actor-name">{actor.name}</h3>
-              <p className="character">{actor.character}</p>
-            </div>
-          ))}
-        </div>
+        <Carousel slides={slides} goToSlide={currentSlide} />
       </div>
     </div>
   );

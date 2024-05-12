@@ -1,0 +1,89 @@
+.movie-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.back-btn-container {
+    text-align: left;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.cast-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.cast-title {
+    margin-left: -250px;
+    margin-bottom: 100px;
+}
+
+.actor-card {
+    margin: 10px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px auto;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.5s ease-in-out;
+}
+
+.actor-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.actor-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.character {
+    font-size: 15px;
+    color: #666;
+    margin-top: 5px;
+}
+
+
+/* Add to Favorites Button Styles */
+.watchlist-btn {
+    background-color: #ffe227; /* Dark background color */
+    color: #222222; /* Light text color */
+    border: 2px solid #222222; /* Slightly lighter border for contrast */
+    padding: 6px 10px; /* Increased padding for better touch targets */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display inline-block for better control */
+    font-size: 16px; /* Font size */
+    margin: 10px 5px; /* Margin around the button */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s, border-color 0.3s; /* Transition effect for hover */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Hover effect */
+.watchlist-btn:hover {
+    background-color: #c0ac28; /* Slightly darker on hover */
+    border-color: #333333; /* Slightly lighter border on hover */
+}
