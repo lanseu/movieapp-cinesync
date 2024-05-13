@@ -8,6 +8,7 @@ import CurrentList from "./components/pages/CurrentList";
 import MovieDetails from "./components/pages/MovieDetails";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
+import WatchList from './components/WatchList';
 
 import "./index.css";
 
@@ -157,6 +158,7 @@ const App = () => {
           }
         />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/watchlist" element={<WatchList />} />
       </Routes>
     </div>
   );

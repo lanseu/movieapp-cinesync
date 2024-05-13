@@ -3,6 +3,7 @@ import {
   MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardBody, MDBCardImage,
   MDBTypography, MDBCardTitle, MDBIcon, MDBBtn
 } from 'mdb-react-ui-kit';
+import { useNavigate } from "react-router-dom"; 
 
 const ProfilePage = () => {
   const [userProfile, setUserProfile] = useState({
@@ -14,6 +15,7 @@ const ProfilePage = () => {
 
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('');
+  const navigate = useNavigate(); // Use useNavigate hook for redirection
 
   const handleBioChange = (event) => {
     setUserProfile({
@@ -41,11 +43,13 @@ const ProfilePage = () => {
   };
 
   const fetchMovies = async () => {
-    const response = await fetch(`https://api.example.com/movies?query=${search}`);
+    const response = await fetch(`https://api.themoviedb.org/3/moviequery=${search}`);
     const data = await response.json();
     setMovies(data.results);
   };
-
+  const goToWatchlist = () => {
+    navigate.push('/watchlist'); // Redirect to the watchlist page
+  };
   return (
     <div className="profile-page">
       <MDBContainer className="py-5">
@@ -114,6 +118,21 @@ const ProfilePage = () => {
                     <div key={movie.id}>{movie.title}</div>
                   ))}
                 </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol className="mb-5 text-white" md="8">
+            <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
+              <MDBCardBody className="text-center">
+                <MDBCardTitle>My Watchlist</MDBCardTitle>
+                <MDBCardImage
+                  src="https://via.placeholder.com/150"
+                  alt="Watchlist Placeholder"
+                  className="img-fluid mb-3"
+                  onClick={goToWatchlist}
+                  style={{ cursor: 'pointer' }}
+                />
+                <MDBTypography tag="p">Manage your watchlist</MDBTypography>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
