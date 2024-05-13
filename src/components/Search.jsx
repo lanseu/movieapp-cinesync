@@ -6,10 +6,14 @@ const Search = (props) => {
     props.setSearchedMovie(e.target.value);
   };
 
+  const handleClick = () => {
+    props.fetchSearch();
+  };
+
   return (
     <div className="search-container">
       <div className="search-bar">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <i className="fa-solid fa-magnifying-glass search-icon"></i>
         <input
           className="search"
           type="text"
@@ -17,8 +21,8 @@ const Search = (props) => {
           onChange={handleChange}
         />
       </div>
-      <button className="search-btn" onClick={props.fetchSearch}>
-        <Link to={"/search/movie/query=" + props.searchedMovie}>Search</Link>
+      <button className="search-btn" onClick={handleClick}>
+        <Link to={"/search-results/" + props.searchedMovie}>Search</Link>
       </button>
     </div>
   );

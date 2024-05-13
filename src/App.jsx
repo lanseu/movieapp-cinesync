@@ -93,6 +93,13 @@ const App = () => {
     window.sessionStorage.setItem("movieId", movieId);
   }, [movieId]);
 
+  // This useEffect hook will trigger fetchSearch whenever searchedMovie changes
+  useEffect(() => {
+    if (searchedMovie.trim() !== "") {
+      fetchSearch();
+    }
+  }, [searchedMovie]);
+
   return (
     <div className="App">
       <Navbar />
@@ -115,7 +122,7 @@ const App = () => {
           }
         />
         <Route
-          path="/search/movie/query=:query"
+          path="/search-results/:query"
           element={
             searchResultArr.length > 0 ? (
               <CurrentList
@@ -128,7 +135,7 @@ const App = () => {
                 <div className="back-btn-container">
                   <button className="back-btn">
                     <Link to="/">
-                      <i class="fa-solid fa-circle-arrow-left"></i>
+                      <i className="fa-solid fa-circle-arrow-left"></i>
                     </Link>
                   </button>
                 </div>
