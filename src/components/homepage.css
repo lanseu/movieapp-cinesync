@@ -1,19 +1,19 @@
 .home-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align to the left */
+  align-items: flex-start;
 }
 
 .collections-container {
-  display: flex; /* Make this a flex container */
-  flex-direction: row; /* Align children in a row */
+  display: flex;
+  flex-direction: row;
   margin: 30px 50px;
-  justify-content: start; /* Align items to the left */
-  align-items: start; /* Align items to the top */
+  justify-content: start;
+  align-items: start;
 }
 .collections-container .collections {
   display: flex;
-  justify-content: space-between; /* Align items to the left */
+  justify-content: space-between;
   align-items: start;
   margin: 25px;
 }
@@ -21,7 +21,7 @@
 .movies-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Distribute space around items */
+  justify-content: space-around;
   width: 100%;
   margin: 0;
 }
@@ -29,94 +29,95 @@
 .movie-cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Align items to the left */
+  justify-content: flex-start;
   align-items: start;
   width: 100%;
 }
 
 .movie-card {
-  margin: 15px; /* Increased margin for more spacing */
-  border-radius: 8px; /* Optional: rounds corners */
+  margin: 20px;
+  border-radius: 8px;
   overflow: hidden;
-  flex: 1 0 auto; /* Adjust flex properties to control the size of the cards */
+  flex: 1 0 auto;
+  height: auto;
 }
 
 .movie-card img {
-  width: 100%; /* Set width to auto */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
 }
 
 /* General styles for the pagination container */
 .pagination {
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* Adds some space above and below the pagination */
+  padding: 20px 0;
   list-style-type: none;
   margin: 0;
-  background-color: #4f525c; /* Light grey background */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  backdrop-filter: blur(10px); /* Blur effect for a soft background */
+  background-color: #4f525c;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 /* Styles for the pagination items */
 .pagination li {
-  margin: 0 10px; /* Space between pagination items */
-  padding: 8px 16px; /* Padding for larger clickable area */
-  border-radius: 25px; /* Rounded corners for items */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  margin: 0 10px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: background-color 0.3s, transform 0.3s;
   color: white;
 }
 
 /* Active page indicator */
 .pagination.active {
-  color: white; /* White text for the active page */
-  background-color: #e7e7e8; /* Light grey background for the active page */
+  color: white;
+  background-color: #e7e7e8;
 }
 
 /* General styles for the pagination container */
 .pagination {
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* Adds some space above and below the pagination */
+  padding: 20px 0;
   list-style-type: none;
   margin: 0;
-  background-color: #4f525c; /* Light grey background */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  backdrop-filter: blur(10px); /* Blur effect for a soft background */
+  background-color: #4f525c;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 /* Styles for the pagination items */
 .pagination li {
-  margin: 0 10px; /* Space between pagination items */
-  padding: 8px 16px; /* Padding for larger clickable area */
-  border-radius: 25px; /* Rounded corners for items */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  margin: 0 10px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: background-color 0.3s, transform 0.3s;
   color: white;
 }
 
 /* Active page indicator */
 .pagination li.active {
-  background-color: #557192; /* Blue background for the active page */
-  color: rgb(141, 224, 255); /* White text for the active page */
-  cursor: pointer; /* Changes cursor to pointer on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Enhanced shadow for active state */
+  background-color: #557192;
+  color: rgb(141, 224, 255);
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Hover effect for pagination items */
 .pagination li:hover {
-  background-color: #8698ab; /* Light grey background on hover */
-  color: white; /* White text on hover */
-  transform: translateY(-2px); /* Slight lift effect on hover */
+  background-color: #8698ab;
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* Previous and Next buttons */
 .pagination li.previous a,
 .pagination li.next a {
   color: white;
-  padding: 16px 16px; /* Padding */
-  border-radius: 20px; /* Rounded corners */
+  padding: 16px 16px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -128,8 +129,8 @@
 
 /* Disabled state for previous and next buttons */
 .pagination.disabled {
-  background-color: #cccccc; /* Greyed out background for disabled buttons */
-  color: #666666; /* Darker grey text for disabled buttons */
-  cursor: not-allowed; /* Cursor indicates the button is disabled */
-  opacity: 0.7; /* Reduce opacity for disabled state */
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
