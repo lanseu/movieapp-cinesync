@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/cinesynclogo.png";
 import ProfilePage from "./Profile";
+import Search from "./Search";
 
-const Navbar = () => {
+const Navbar = ({ searchedMovie, setSearchedMovie, fetchSearch }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -18,9 +19,16 @@ const Navbar = () => {
           </Link>
         </h1>
       </div>
+      <div className="search-container">
+        <Search
+          searchedMovie={searchedMovie}
+          setSearchedMovie={setSearchedMovie}
+          fetchSearch={fetchSearch}
+        />
+      </div>
       <div className="navbar-right">
         <Link to="/Profile" element={<ProfilePage />}>
-          Profile
+          <button className="yellow-button">Profile</button>
         </Link>
       </div>
     </nav>

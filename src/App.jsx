@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
@@ -8,7 +8,7 @@ import CurrentList from "./components/pages/CurrentList";
 import MovieDetails from "./components/pages/MovieDetails";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
-import WatchList from './components/WatchList';
+import WatchList from "./components/WatchList";
 
 import "./index.css";
 
@@ -99,16 +99,23 @@ const App = () => {
     if (searchedMovie.trim() !== "") {
       fetchSearch();
     }
-  }, [searchedMovie]);
+  }, [fetchSearch, searchedMovie]);
+
+  const navigate = useNavigate();
 
   return (
     <div className="App">
-      <Navbar />
-      <Search
+      <Navbar
         searchedMovie={searchedMovie}
         setSearchedMovie={setSearchedMovie}
         fetchSearch={fetchSearch}
-      />
+      >
+        <Search
+          searchedMovie={searchedMovie}
+          setSearchedMovie={setSearchedMovie}
+          fetchSearch={fetchSearch}
+        />
+      </Navbar>
       <Routes>
         <Route
           exact
@@ -125,28 +132,35 @@ const App = () => {
         <Route
           path="/search-results/:query"
           element={
-            searchResultArr.length > 0 ? (
-              <CurrentList
-                currentArr={searchResultArr}
-                id={movieId}
-                setMovieId={setMovieId}
-              />
-            ) : (
-              <div>
-                <div className="back-btn-container">
-                  <button className="back-btn">
-                    <Link to="/">
-                      <i className="fa-solid fa-circle-arrow-left"></i>
-                    </Link>
-                  </button>
-                </div>
+            <>
+              {/* Back Button */}
+              <div className="back-btn-container">
+                <button
+                  className="back-btn"
+                  onClick={() => {
+                    setSearchedMovie("");
+                    navigate("/");
+                  }}
+                >
+                  <i className="fa-solid fa-circle-arrow-left"></i>
+                </button>
+              </div>
+              {/* Conditional Rendering */}
+              {searchResultArr.length > 0 ? (
+                <CurrentList
+                  currentArr={searchResultArr}
+                  id={movieId}
+                  setMovieId={setMovieId}
+                />
+              ) : (
                 <div className="no-results-div">
                   <h1 className="no-results">No results found</h1>
                 </div>
-              </div>
-            )
+              )}
+            </>
           }
         />
+
         <Route
           path="/movie/:id"
           element={
