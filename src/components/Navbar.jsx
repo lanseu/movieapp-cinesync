@@ -81,7 +81,17 @@ const Navbar = ({
         onClose={closeModal}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        className="logout-dialog"
+        sx={{
+          "& .MuiDialog-paper": {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            margin: "auto",
+            height: "auto",
+            maxWidth: "400px",
+          },
+        }}
       >
         <DialogTitle id="alert-dialog-title">Logout Confirmation</DialogTitle>
         <DialogContent>
@@ -91,10 +101,21 @@ const Navbar = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeModal} className="cancel-button">
+          <Button onClick={closeModal} sx={{ color: "red" }}>
             Cancel
           </Button>
-          <Button onClick={confirmLogout} autoFocus className="logout-button">
+          <Button
+            onClick={confirmLogout}
+            autoFocus
+            sx={{
+              color: "white",
+              backgroundColor: "red",
+              "&:hover": {
+                color: "red",
+                backgroundColor: "white",
+              },
+            }}
+          >
             Logout
           </Button>
         </DialogActions>
