@@ -6,35 +6,27 @@ import "./addbutton.css";
 
 const MovieDetails = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [favorites, setFavorites] = useState([]); // State to manage favorites list
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % props.movieDetails.cast.length);
-    }, 3000);
+    if (props.movieDetails.cast && props.movieDetails.cast.length > 0) {
+      const timer = setInterval(() => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % props.movieDetails.cast.length);
+      }, 3000);
 
-    return () => clearInterval(timer);
-  }, []);
-
-  const trimInfo = (str, endIndex) => {
-    return str.substring(0, endIndex);
-  };
-
-  const filterDirector = (directorArr) => {
-    for (let i = 0; i < directorArr.length; i++) {
-      if (directorArr[i]!== undefined) {
-        return directorArr[i];
-      }
+      return () => clearInterval(timer);
     }
-  };
+  }, [props.movieDetails.cast]);
 
-  const getHours = (runtime) => {
-    return Math.floor(runtime / 60);
-  };
+  if (!props.movieDetails) {
+    return <div>Loading...</div>;
+  }
 
-  const getMins = (runtime) => {
-    return runtime % 60;
-  };
+  const trimInfo = (str, endIndex) => str.substring(0, endIndex);
+
+  const getHours = (runtime) => Math.floor(runtime / 60);
+
+  const getMins = (runtime) => runtime % 60;
 
   const styles = {
     backgroundImage: `url(https://image.tmdb.org/t/p/original/${props.movieDetails.backdropPath})`,
@@ -59,7 +51,6 @@ const MovieDetails = (props) => {
   }));
 
   const handleAddToFavorites = () => {
-    // Add movie to favorites list
     setFavorites([...favorites, props.movieDetails]);
     console.log("Added to favorites!");
   };
@@ -79,7 +70,7 @@ const MovieDetails = (props) => {
             src={`https://image.tmdb.org/t/p/original/${props.movieDetails.posterPath}`}
             alt="movie-poster"
             className="movie-poster"
-          ></img>
+          />
         </div>
         <div className="detail-container">
           <h1 className="movie-title">{props.movieDetails.title}</h1>
@@ -97,29 +88,36 @@ const MovieDetails = (props) => {
             Release date: <span>{props.movieDetails.releaseDate}</span>
           </p>
           <p className="director">
-            Directed by:{" "}
-            <span>{filterDirector(props.movieDetails.director)}</span>
+            Directed by: <span>{props.movieDetails.director}</span>
           </p>
           <p className="producer">
             Produced by: <span>{props.movieDetails.productionCompany}</span>
           </p>
           <p className="runtime">
-            Runtime:{" "}
-            <span>
-              {getHours(props.movieDetails.runtime)}h{" "}
-              {getMins(props.movieDetails.runtime)}m
-            </span>
+            Runtime: <span>{getHours(props.movieDetails.runtime)}h {getMins(props.movieDetails.runtime)}m</span>
           </p>
           <p className="original-lang">
-            Original Language:{" "}
-            <span>{props.movieDetails.originalLanguage}</span>
+            Original Language: <span>{props.movieDetails.originalLanguage}</span>
           </p>
           <button onClick={handleAddToFavorites} className="watchlist-btn">Add to Favorites</button>
         </div>
       </div>
       <div className="cast-container">
         <h2 className="cast-title">Cast</h2>
-        <Carousel slides={slides} goToSlide={currentSlide} />
+        {props.movieDetails.cast.length > 0 && <Carousel slides={slides} goToSlide={currentSlide} />}
+      </div>
+      <div className="reviews-container">
+        <h2 className="reviews-title">Reviews</h2>
+        {props.movieDetails.reviews && props.movieDetails.reviews.length > 0 ? (
+          props.movieDetails.reviews.map((review) => (
+            <div key={review.id} className="review-card">
+              <h3 className="review-author">{review.author}</h3>
+              <p className="review-content">{review.content}</p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews available.</p>
+        )}
       </div>
     </div>
   );

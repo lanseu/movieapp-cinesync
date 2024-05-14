@@ -5,6 +5,8 @@
     justify-content: center;
     gap: 10px;
     padding: 5px;
+    padding-bottom: 20px; /* Add padding to the bottom of the container */
+
 }
 
 .back-btn-container {
@@ -22,6 +24,7 @@
     width: 100%;
     max-width: 600px;
     margin: 100px auto;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -87,3 +90,37 @@
     background-color: #c0ac28; /* Slightly darker on hover */
     border-color: #333333; /* Slightly lighter border on hover */
 }
+
+/* MovieDetails.css */
+.reviews-container {
+    padding: 20px;
+    background-color: #000000; /* Ensure background is not the same as text */
+    margin-top: 20px; /* Adjust this value as needed */
+    border-radius: 10px;
+    margin-top: 150px;
+  }
+  
+  .review-card {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+  }
+
+  .review-content{
+    color: #ffff;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    color: #ffe227;
+  }
+  
+  .review-content {
+    margin-top: 5px;
+  }
+  
+  
+  
+  
