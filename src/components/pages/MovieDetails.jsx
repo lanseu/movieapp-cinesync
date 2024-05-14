@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Carousel from 'react-spring-3d-carousel';
 import "./MovieDetails.css";
+import "./addbutton.css";
 
 const MovieDetails = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
