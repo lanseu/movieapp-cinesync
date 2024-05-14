@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+// MovieDetails.jsx
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-spring-3d-carousel";
-import Rating from "react-rating"; // Import the Rating component
+import Rating from "react-rating";
+import Swal from "sweetalert2"; // Import SweetAlert
+import { FavoritesContext } from "../FavoritesContext"; // Import the context
 import "./MovieDetails.css";
 import "./addbutton.css";
 
 const MovieDetails = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [favorites, setFavorites] = useState([]);
+  const { addToFavorites } = useContext(FavoritesContext); // Use the context
 
   useEffect(() => {
     if (props.movieDetails.cast && props.movieDetails.cast.length > 0) {
@@ -52,8 +55,8 @@ const MovieDetails = (props) => {
   }));
 
   const handleAddToFavorites = () => {
-    setFavorites([...favorites, props.movieDetails]);
-    console.log("Added to favorites!");
+    addToFavorites(props.movieDetails);
+    Swal.fire("Added to Favorites!"); // Use SweetAlert to display a message
   };
 
   return (
@@ -65,8 +68,8 @@ const MovieDetails = (props) => {
           </Link>
         </button>
       </div>
-      <div className="movie-details-inner" style={styles}>
-        <div className="poster-container">
+      <div className="movie-details-inner" style={styles}>        
+      <div className="poster-container">
           <img
             src={`https://image.tmdb.org/t/p/original/${props.movieDetails.posterPath}`}
             alt="movie-poster"
@@ -89,7 +92,7 @@ const MovieDetails = (props) => {
             </span>
             <Rating
               className="star-rating"
-              initialRating={props.movieDetails.rating / 2} // Convert movie rating to a scale of 0 to 5
+              initialRating={props.movieDetails.rating / 2}
               readonly
               emptySymbol="fa fa-star-o fa-lg"
               fullSymbol="fa fa-star fa-lg"
@@ -112,7 +115,7 @@ const MovieDetails = (props) => {
             Original Language: <span>{props.movieDetails.originalLanguage}</span>
           </p>
           <button onClick={handleAddToFavorites} className="watchlist-btn">
-            Add to Favorites
+            Add to Watchlist
           </button>
         </div>
       </div>

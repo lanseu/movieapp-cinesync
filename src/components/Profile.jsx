@@ -114,19 +114,6 @@ const ProfilePage = () => {
                   style={{ cursor: 'pointer' }}
                   onClick={goToWatchlist}
                 />
-                <div>
-                  {/* {playlist.map(movie => (
-                    <div key={movie.id}>
-                      <MDBCardImage
-                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                        alt={movie.title}
-                        className="img-fluid mb-3"
-                        style={{ cursor: 'pointer' }}
-                      />
-                      <MDBTypography tag="h5">{movie.title}</MDBTypography>
-                    </div>
-                  ))} */}
-                </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

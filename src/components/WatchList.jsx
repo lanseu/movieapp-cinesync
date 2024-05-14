@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// WatchList.jsx
+import React, { useContext } from "react";
 import {
   MDBContainer,
   MDBRow,
@@ -10,25 +11,10 @@ import {
   MDBTypography,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import { FavoritesContext } from "./FavoritesContext"; // Import the context
 
 const WatchList = () => {
-  const [movies, setMovies] = useState([
-    { id: 1, title: "Perfect", poster_path: "https://via.placeholder.com/150" },
-    { id: 2, title: "Perfect", poster_path: "https://via.placeholder.com/150" },
-    { id: 3, title: "Perfect", poster_path: "https://via.placeholder.com/150" },
-  ]);
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const addToPlaylist = (movie) => {
-    if (!movies.includes(movie)) {
-      setMovies([...movies, movie]);
-    }
-  };
-
-  const removeFromPlaylist = (movieId) => {
-    setMovies(movies.filter((movie) => movie.id !== movieId));
-  };
+  const { favorites, removeFromFavorites } = useContext(FavoritesContext); // Use the context
 
   return (
     <div className="profile-page">
@@ -39,7 +25,7 @@ const WatchList = () => {
               <MDBCardBody className="text-center">
                 <MDBCardTitle className="pb-3">My Watchlist</MDBCardTitle>
                 <MDBRow className="justify-content-center">
-                  {movies.map((movie) => (
+                  {favorites.map((movie) => (
                     <MDBCol key={movie.id} md="3" className="mb-4">
                       <MDBCard
                         style={{
@@ -48,7 +34,7 @@ const WatchList = () => {
                       >
                         <MDBCardBody className="text-center">
                           <MDBCardImage
-                            src={movie.poster_path}
+                            src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`}
                             alt={movie.title}
                             className="img-fluid mb-3"
                             style={{ cursor: "pointer" }}
@@ -56,7 +42,7 @@ const WatchList = () => {
                           <MDBTypography tag="h5">{movie.title}</MDBTypography>
                           <MDBBtn
                             color="danger"
-                            onClick={() => removeFromPlaylist(movie.id)}
+                            onClick={() => removeFromFavorites(movie.id)}
                           >
                             Remove Movie
                           </MDBBtn>
@@ -65,43 +51,6 @@ const WatchList = () => {
                     </MDBCol>
                   ))}
                 </MDBRow>
-                <MDBBtn
-                  color="primary"
-                  onClick={() =>
-                    setSelectedMovie({
-                      id: Math.floor(Math.random() * 100),
-                      title: "Perfect",
-                      poster_path: "https://via.placeholder.com/150",
-                    })
-                  }
-                >
-                  Add Movie
-                </MDBBtn>
-                {selectedMovie && (
-                  <div>
-                    <MDBCardImage
-                      src={selectedMovie.poster_path}
-                      alt={selectedMovie.title}
-                      className="img-fluid mb-3"
-                      style={{ cursor: "pointer" }}
-                    />
-                    <MDBTypography tag="h5">
-                      {selectedMovie.title}
-                    </MDBTypography>
-                    <MDBBtn
-                      color="success"
-                      onClick={() => addToPlaylist(selectedMovie)}
-                    >
-                      Add Movie
-                    </MDBBtn>
-                    <MDBBtn
-                      color="danger"
-                      onClick={() => setSelectedMovie(null)}
-                    >
-                      Cancel
-                    </MDBBtn>
-                  </div>
-                )}
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
