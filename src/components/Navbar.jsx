@@ -1,10 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importing useNavigate hook
 import Logo from "../images/cinesynclogo.png";
-import ProfilePage from "./Profile";
 import Search from "./Search";
 
-const Navbar = ({ searchedMovie, setSearchedMovie, fetchSearch }) => {
+const Navbar = ({
+  searchedMovie,
+  setSearchedMovie,
+  fetchSearch,
+  isLoggedIn,
+  setLoggedIn,
+}) => {
+  const navigate = useNavigate(); // Declaring the navigate function
+  const handleLogout = () => {
+    // Handle logout logic here
+    setLoggedIn(false);
+    isLoggedIn(false); // Update the loggedIn state to false
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -27,9 +39,25 @@ const Navbar = ({ searchedMovie, setSearchedMovie, fetchSearch }) => {
         />
       </div>
       <div className="navbar-right">
-        <Link to="/Profile" element={<ProfilePage />}>
-          <button className="yellow-button">Profile</button>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <Link to="/Profile">
+              <button className="yellow-button">Profile</button>
+            </Link>
+            <button className="yellow-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <button
+            className="yellow-button"
+            onClick={() => {
+              navigate("/login"); // Redirecting to the Login page
+            }}
+          >
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );
