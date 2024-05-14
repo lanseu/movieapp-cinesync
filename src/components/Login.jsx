@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./login.css"; // You can create a CSS file for styling
+import { useNavigate } from "react-router-dom";
+import users from "./data";
+import { checkCredentials } from "./data";
+import "./login.css";
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     // Perform basic validation
@@ -13,35 +16,38 @@ const Login = () => {
       return;
     }
 
-    // For simplicity, just set loggedIn to true
-    setLoggedIn(true);
+    // Check credentials
+    if (checkCredentials(username, password)) {
+      setLoggedIn(true);
+      navigate("/");
+    } else {
+      alert("Invalid username or password.");
+    }
+  };
+
+  const navigateToSignUp = () => {
+    navigate("/signup"); // Navigate to the sign-up page
   };
 
   return (
     <div className="login-container">
-      {loggedIn ? (
-        <div className="logged-in-message">
-          <h2>Welcome, {username}!</h2>
-          <p>You are now logged in.</p>
-        </div>
-      ) : (
-        <div className="login-form">
-          <h2>Login</h2>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleLogin}>Login</button>
-        </div>
-      )}
+      <div className="login-form">
+        <h2>Login</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={navigateToSignUp}>Sign Up</button>{" "}
+      </div>
     </div>
   );
 };

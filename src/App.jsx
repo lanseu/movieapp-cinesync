@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
@@ -9,8 +9,7 @@ import MovieDetails from "./components/pages/MovieDetails";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
 import WatchList from "./components/WatchList";
-import { MovieProvider } from './components/MoveiContext';
-
+import { FavoritesProvider } from "./components/FavoritesContext";
 import "./index.css";
 
 const App = () => {
@@ -60,24 +59,31 @@ const App = () => {
 
   const fetchMovieDetails = () => {
     setIsLoading(true);
-    axios.get(movieDetailsUrl)
+    axios
+      .get(movieDetailsUrl)
       .then((response) => {
         const details = {
           title: response.data.title,
           overview: response.data.overview,
-          posterPath: "https://image.tmdb.org/t/p/original/" + response.data.poster_path,
+          posterPath:
+            "https://image.tmdb.org/t/p/original/" + response.data.poster_path,
           genres: response.data.genres.map((genre) => genre.name + " "),
           originalLanguage: response.data.original_language,
           releaseDate: response.data.release_date,
           runtime: response.data.runtime,
           rating: response.data.vote_average,
-          cast: response.data.credits.cast.filter((person) => person.known_for_department === "Acting"),
-          director: response.data.credits.crew.find((person) => person.known_for_department === "Directing")?.name,
+          cast: response.data.credits.cast.filter(
+            (person) => person.known_for_department === "Acting"
+          ),
+          director: response.data.credits.crew.find(
+            (person) => person.known_for_department === "Directing"
+          )?.name,
           productionCompany: response.data.production_companies[0]?.name,
           backdropPath: response.data.backdrop_path,
         };
-  
-        axios.get(reviewsUrl)
+
+        axios
+          .get(reviewsUrl)
           .then((reviewsResponse) => {
             details.reviews = reviewsResponse.data.results; // Add reviews to details object
             setMovieDetails(details); // Set movie details including reviews
@@ -93,7 +99,6 @@ const App = () => {
         setIsLoading(false);
       });
   };
-  
 
   useEffect(() => {
     getCurrentList();
@@ -182,7 +187,7 @@ const App = () => {
             isLoading ? (
               <Loading />
             ) : (
-              <MovieDetails movieDetails={movieDetails} /> 
+              <MovieDetails movieDetails={movieDetails} />
             )
           }
         />
