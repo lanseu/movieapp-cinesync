@@ -6,6 +6,7 @@
     gap: 10px;
     padding: 5px;
     padding-bottom: 20px; /* Add padding to the bottom of the container */
+    
 
 }
 
@@ -93,10 +94,13 @@
 /* MovieDetails.css */
 .reviews-container {
     padding: 20px;
-    background-color: #000000; /* Ensure background is not the same as text */
+    /* background-color: #000000;  */
     margin-top: 20px; /* Adjust this value as needed */
     border-radius: 10px;
     margin-top: 150px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgb(255, 255, 255, 0.3);
   }
   
   .review-card {
@@ -119,7 +123,9 @@
   .review-content {
     margin-top: 5px;
   }
-  
+  .reviews-title{
+    color:white;
+  }
   
   
   
