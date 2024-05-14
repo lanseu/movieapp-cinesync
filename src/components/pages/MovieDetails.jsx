@@ -56,7 +56,10 @@ const MovieDetails = (props) => {
 
   const handleAddToFavorites = () => {
     addToFavorites(props.movieDetails);
-    Swal.fire("Added to Favorites!"); // Use SweetAlert to display a message
+    Swal.fire({
+      title: "Success",
+      text: "Added to Watchlist!",
+      icon: "success"}); // Use SweetAlert to display a message
   };
 
   return (
@@ -124,7 +127,7 @@ const MovieDetails = (props) => {
         {props.movieDetails.cast.length > 0 && <Carousel slides={slides} goToSlide={currentSlide} />}
       </div>
       <div className="reviews-container">
-        <h2 className="reviews-title">Reviews</h2>
+        <h1 className="reviews-title">Reviews</h1>
         {props.movieDetails.reviews && props.movieDetails.reviews.length > 0 ? (
           props.movieDetails.reviews.map((review) => (
             <div key={review.id} className="review-card">
