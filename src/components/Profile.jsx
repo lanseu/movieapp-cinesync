@@ -40,7 +40,7 @@ const ProfilePage = () => {
   };
 
   const goToWatchlist = () => {
-    navigate('/watchlist'); // Navigate to watchlist page
+    navigate('/WatchList'); // Navigate to watchlist page
   };
 
   return (
@@ -107,12 +107,12 @@ const ProfilePage = () => {
             <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
               <MDBCardBody className="text-center">
                 <MDBCardTitle className="pb-3">My Watchlist</MDBCardTitle>
-                <MDBIcon 
-                  fas 
-                  icon="plus-circle" 
-                  size="2x" 
-                  style={{ cursor: 'pointer' }} 
-                  onClick={goToWatchlist} 
+                <MDBIcon
+                  fas
+                  icon="plus-circle"
+                  size="2x"
+                  style={{ cursor: 'pointer' }}
+                  onClick={goToWatchlist}
                 />
                 <div>
                   {/* {playlist.map(movie => (
