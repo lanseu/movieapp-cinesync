@@ -1,10 +1,12 @@
 .movie-details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    padding-bottom: 20px; /* Add padding to the bottom of the container */
+
 }
 
 .back-btn-container {
@@ -19,12 +21,13 @@
 }
 
 .cast-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 100px auto;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 100px auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .cast-title {
@@ -83,21 +86,40 @@
 
 /* Hover effect */
 .watchlist-btn:hover {
-  background-color: #c0ac28; /* Slightly darker on hover */
-  border-color: #333333; /* Slightly lighter border on hover */
+    background-color: #c0ac28; /* Slightly darker on hover */
+    border-color: #333333; /* Slightly lighter border on hover */
 }
 
-.rating-container {
-  display: flex;
-  align-items: start;
-  justify-content: left;
-  margin-top: 10px; /* Adjust as needed */
-}
+/* MovieDetails.css */
+.reviews-container {
+    padding: 20px;
+    background-color: #000000; /* Ensure background is not the same as text */
+    margin-top: 20px; /* Adjust this value as needed */
+    border-radius: 10px;
+    margin-top: 150px;
+  }
+  
+  .review-card {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+  }
 
-.star-rating {
-  color: #ffc107; /* Adjust star color as needed */
-}
-
-.numeric-rating {
-  margin: 0px 5px; /* Adjust as needed */
-}
+  .review-content{
+    color: #ffff;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    color: #ffe227;
+  }
+  
+  .review-content {
+    margin-top: 5px;
+  }
+  
+  
+  
+  

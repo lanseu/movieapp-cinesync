@@ -1,0 +1,48 @@
+.carousel-container {
+  width: 100%; /* Increase the width to 90% */
+  height: 600px; /* Increase the height to 600px */
+ 
+  overflow: hidden;
+  position: relative;
+  z-index: 1; /* Ensure it is above other content */
+ 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for a floating effect */
+  background-size: cover; /* Cover the container with the background image */
+  background-position: center; /* Center the background image */
+  transition: background-image 0.7s ease-in-out; /* Smooth background transition */
+}
+
+.carousel-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%; /* Make sure the items take the full height of the container */
+  text-align: center; /* Center text inside the carousel item */
+}
+
+.carousel-img {
+  width: auto;
+  height: 90%; /* Increase the image height to 90% */
+  object-fit: contain; /* Ensure the image fits well within the container */
+  border-radius: 10px;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 40px; /* Move the caption closer to the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 05px;
+  border-radius: 5px;
+}
+
+.carousel-caption h5 {
+  color: #FFD700; /* Change this to your desired color */
+  font-weight: bolder;
+}
