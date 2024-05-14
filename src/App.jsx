@@ -12,6 +12,11 @@ import WatchList from "./components/WatchList";
 import { FavoritesProvider } from "./components/FavoritesContext";
 import "./index.css";
 
+
+
+
+
+
 const App = () => {
   const [activeList, setActiveList] = useState("Trending");
   const [currentArr, setCurrentArr] = useState([]);
