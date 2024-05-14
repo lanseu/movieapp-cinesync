@@ -9,13 +9,10 @@ import MovieDetails from "./components/pages/MovieDetails";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
 import WatchList from "./components/WatchList";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import { FavoritesProvider } from "./components/FavoritesContext";
 import "./index.css";
-
-
-
-
-
 
 const App = () => {
   const [activeList, setActiveList] = useState("Trending");
@@ -25,7 +22,9 @@ const App = () => {
   );
 
   const [isLoading, setIsLoading] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn] = useState();
+  const [signedUsers, setUsers] = useState("");
   const [searchedMovie, setSearchedMovie] = useState("");
   const [searchResultArr, setSearchResultArr] = useState([]);
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=75002009f55d0126dfdc3d258f18b958&query=${searchedMovie}`;
@@ -134,6 +133,8 @@ const App = () => {
         searchedMovie={searchedMovie}
         setSearchedMovie={setSearchedMovie}
         fetchSearch={fetchSearch}
+        isLoggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
       >
         <Search
           searchedMovie={searchedMovie}
@@ -198,6 +199,12 @@ const App = () => {
         />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/watchlist" element={<WatchList />} />
+        <Route
+          path="/login"
+          element={<Login setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}
+        />
+
+        <Route path="/signup" element={<SignUp setUsers={setUsers} />} />
       </Routes>
       {/* <MovieProvider>
       <Router>

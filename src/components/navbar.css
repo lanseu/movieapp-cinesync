@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.search-container {
+  flex: 1;
+  margin: 0 1rem;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.yellow-button {
+  background-color: yellow;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.logout-dialog {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.logout-dialog .MuiDialog-paper {
+  max-width: 400px;
+}
+
+.cancel-button {
+  color: red;
+}
+
+.logout-button {
+  color: white;
+  background-color: red;
+}

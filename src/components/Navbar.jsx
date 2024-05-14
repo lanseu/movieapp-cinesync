@@ -1,7 +1,14 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // Importing useNavigate hook
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../images/cinesynclogo.png";
 import Search from "./Search";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import "./navbar.css";
 
 const Navbar = ({
   searchedMovie,
@@ -10,11 +17,21 @@ const Navbar = ({
   isLoggedIn,
   setLoggedIn,
 }) => {
-  const navigate = useNavigate(); // Declaring the navigate function
+  const navigate = useNavigate();
+  const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+
   const handleLogout = () => {
-    // Handle logout logic here
+    setLogoutModalOpen(true);
+  };
+
+  const confirmLogout = () => {
+    navigate("/");
     setLoggedIn(false);
-    isLoggedIn(false); // Update the loggedIn state to false
+    setLogoutModalOpen(false);
+  };
+
+  const closeModal = () => {
+    setLogoutModalOpen(false);
   };
 
   return (
@@ -52,13 +69,36 @@ const Navbar = ({
           <button
             className="yellow-button"
             onClick={() => {
-              navigate("/login"); // Redirecting to the Login page
+              navigate("/login");
             }}
           >
             Login
           </button>
         )}
       </div>
+      <Dialog
+        open={isLogoutModalOpen}
+        onClose={closeModal}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        className="logout-dialog"
+      >
+        <DialogTitle id="alert-dialog-title">Logout Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to log out? Logging out will redirect you to
+            the homepage.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal} className="cancel-button">
+            Cancel
+          </Button>
+          <Button onClick={confirmLogout} autoFocus className="logout-button">
+            Logout
+          </Button>
+        </DialogActions>
+      </Dialog>
     </nav>
   );
 };
