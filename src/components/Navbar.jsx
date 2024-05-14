@@ -14,7 +14,7 @@ const Navbar = ({ searchedMovie, setSearchedMovie, fetchSearch }) => {
               className="logo"
               style={{ width: "200px", height: "auto" }}
               src={Logo}
-              alt="Cinepedia Logo"
+              alt="Cinesync Logo"
             />
           </Link>
         </h1>

@@ -4,8 +4,12 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background-color: #171717;
+  background-image: url("./images/cinesyncbg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #070515;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
