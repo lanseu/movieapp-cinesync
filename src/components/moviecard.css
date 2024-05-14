@@ -1,14 +1,25 @@
 .movie-card {
   position: relative;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Adjust the color and opacity as needed */
 }
 
 .movie-img-container {
   position: relative;
+  height: auto;
+  width: 100%;
 }
 
 .movie-info {
   position: absolute;
-  top: 50%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -34,10 +45,15 @@ p.movie-title {
 }
 
 .movie-img-container:hover::before {
-  background-color: rgba(25, 61, 76, 0.8);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
 }
 
 .movie-img-container:hover .movie-info {
   opacity: 1;
   visibility: visible;
+}
+
+.rating {
+  align-items: start;
+  justify-content: center;
 }

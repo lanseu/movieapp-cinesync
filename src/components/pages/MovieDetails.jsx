@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Carousel from 'react-spring-3d-carousel';
+import Carousel from "react-spring-3d-carousel";
+import Rating from "react-rating"; // Import the Rating component
 import "./MovieDetails.css";
 
 const MovieDetails = (props) => {
@@ -9,7 +10,9 @@ const MovieDetails = (props) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % props.movieDetails.cast.length);
+      setCurrentSlide(
+        (prevSlide) => (prevSlide + 1) % props.movieDetails.cast.length
+      );
     }, 3000);
 
     return () => clearInterval(timer);
@@ -21,7 +24,7 @@ const MovieDetails = (props) => {
 
   const filterDirector = (directorArr) => {
     for (let i = 0; i < directorArr.length; i++) {
-      if (directorArr[i]!== undefined) {
+      if (directorArr[i] !== undefined) {
         return directorArr[i];
       }
     }
@@ -89,9 +92,20 @@ const MovieDetails = (props) => {
           </span>
           <h3 className="overview-title">Overview</h3>
           <p className="overview">{props.movieDetails.overview}</p>
-          <p>
-            Rating: <span className="rating">{props.movieDetails.rating}</span>
-          </p>
+          <div className="rating-container">
+            <span className="rating-text">Rating:</span>
+            <span className="numeric-rating">
+              {props.movieDetails.rating / 2}
+            </span>
+            <Rating
+              className="star-rating"
+              initialRating={props.movieDetails.rating / 2} // Convert movie rating to a scale of 0 to 5
+              readonly
+              emptySymbol="fa fa-star-o fa-lg"
+              fullSymbol="fa fa-star fa-lg"
+            />
+          </div>
+
           <p className="release-date">
             Release date: <span>{props.movieDetails.releaseDate}</span>
           </p>
@@ -113,7 +127,9 @@ const MovieDetails = (props) => {
             Original Language:{" "}
             <span>{props.movieDetails.originalLanguage}</span>
           </p>
-          <button onClick={handleAddToFavorites} className="watchlist-btn">Add to Favorites</button>
+          <button onClick={handleAddToFavorites} className="watchlist-btn">
+            Add to Favorites
+          </button>
         </div>
       </div>
       <div className="cast-container">
