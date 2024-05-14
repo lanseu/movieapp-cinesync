@@ -26,7 +26,7 @@ const Collections = (props) => {
 
           // Calculate total pages based on total results and desired results per page
           const totalResults = data.total_results || 0;
-          const resultsPerPage = 16;
+          const resultsPerPage = 20; // Adjust this as needed
           const totalPages = Math.ceil(totalResults / resultsPerPage);
           setTotalPages(totalPages);
         })
@@ -108,12 +108,18 @@ const Collections = (props) => {
 
       {/* Pagination */}
       <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        breakLabel={"..."}
+        breakClassName={"break-me"}
         pageCount={totalPages}
-        pageRangeDisplayed={4}
-        marginPagesDisplayed={3}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
         onPageChange={handlePageClick}
         containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
         activeClassName={"active"}
+        forcePage={currentPage - 1}
       />
     </div>
   );
