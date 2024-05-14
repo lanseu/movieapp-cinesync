@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, Routes, Link, useNavigate } from "react-router-dom";
+import {Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
@@ -9,6 +9,7 @@ import MovieDetails from "./components/pages/MovieDetails";
 import Loading from "./components/Loading";
 import ProfilePage from "./components/Profile";
 import WatchList from "./components/WatchList";
+import { MovieProvider } from './components/MoveiContext';
 
 import "./index.css";
 
@@ -174,6 +175,14 @@ const App = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/watchlist" element={<WatchList />} />
       </Routes>
+      {/* <MovieProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProfilePage />} />
+          <Route path="/watchlist" element={<WatchList />} />
+        </Routes>
+      </Router>
+    </MovieProvider> */}
     </div>
   );
 };

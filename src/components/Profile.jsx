@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+// ProfilePage.js
+import React, { useState, useContext } from "react";
 import {
   MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardBody, MDBCardImage,
   MDBTypography, MDBCardTitle, MDBIcon
 } from 'mdb-react-ui-kit';
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+// import { MovieContext } from './MoveiContext';
 
 const ProfilePage = () => {
+  // const { playlist } = useContext(MovieContext);
   const [userProfile, setUserProfile] = useState({
     username: "JulieArsenault",
     password: "password123",
@@ -13,32 +16,27 @@ const ProfilePage = () => {
     avatarUrl: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
   });
 
-  const [search, setSearch] = useState('');
   const navigate = useNavigate(); // Use useNavigate hook for redirection
 
   const handleBioChange = (event) => {
     setUserProfile({
-     ...userProfile,
+      ...userProfile,
       bio: event.target.value
     });
   };
 
   const handleUsernameChange = (event) => {
     setUserProfile({
-     ...userProfile,
+      ...userProfile,
       username: event.target.value
     });
   };
 
   const handlePasswordChange = (event) => {
     setUserProfile({
-     ...userProfile,
+      ...userProfile,
       password: event.target.value
     });
-  };
-
-  const handleSearchChange = (event) => {
-    setSearch(event.target.value);
   };
 
   const goToWatchlist = () => {
@@ -109,7 +107,7 @@ const ProfilePage = () => {
             <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
               <MDBCardBody className="text-center">
                 <MDBCardTitle className="pb-3">My Watchlist</MDBCardTitle>
-                <MDBIcon  className="pb-2"
+                <MDBIcon 
                   fas 
                   icon="plus-circle" 
                   size="2x" 
@@ -117,10 +115,18 @@ const ProfilePage = () => {
                   onClick={goToWatchlist} 
                 />
                 <div>
-                  {/* Render movies here */}
+                  {/* {playlist.map(movie => (
+                    <div key={movie.id}>
+                      <MDBCardImage
+                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                        alt={movie.title}
+                        className="img-fluid mb-3"
+                        style={{ cursor: 'pointer' }}
+                      />
+                      <MDBTypography tag="h5">{movie.title}</MDBTypography>
+                    </div>
+                  ))} */}
                 </div>
-
-                <MDBTypography tag="p">Manage your watchlist</MDBTypography>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
