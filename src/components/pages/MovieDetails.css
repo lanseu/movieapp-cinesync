@@ -100,32 +100,31 @@
     margin-top: 150px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    background-color: rgb(255, 255, 255, 0.3);
-  }
+    background-color: rgba(145, 180, 210, 0.3);
+}
   
-  .review-card {
+.review-card {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    
-  }
+    background-color: rgba(0, 0, 0, 0.441); /* Add background color to see changes clearly */
+}
 
-  .review-content{
-    color: #ffff;
-  }
-  
-  .review-author {
-    font-weight: bold;
-    color: #ffe227;
-  }
-  
-  .review-content {
+.review-content {
+    color: #fff; /* Corrected to white color */
     margin-top: 5px;
-  }
-  .reviews-title{
-    color:white;
-  }
+}
+  
+.review-author {
+    font-weight: bold;
+    color: #ffe227; /* Yellow color for the author name */
+}
+  
+.reviews-title {
+    color: white;
+    text-align: center;
+}
   
   
   
