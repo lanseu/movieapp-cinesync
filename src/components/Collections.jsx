@@ -4,33 +4,25 @@ import ReactPaginate from "react-paginate";
 import "./homepage.css";
 
 const Collections = (props) => {
-  const [isActive, setIsActive] = useState([true, false, false, false, false]);
+  const apiKey = "75002009f55d0126dfdc3d258f18b958";
+
+  const [isActive, setIsActive] = useState([true, false, false, false]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
-
-  const apiKey = "75002009f55d0126dfdc3d258f18b958";
+  const [activeUrl, setActiveUrl] = useState(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
 
   const fetchMovies = useCallback(
-    (page = currentPage) => {
-      const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
-      fetch(url)
+    (url, page = 1) => {
+      fetch(`${url}&page=${page}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error status: ${response.status}`);
           }
-          const contentType = response.headers.get("Content-Type");
-          if (contentType && contentType.includes("application/json")) {
-            return response.json();
-          } else {
-            throw new Error("Expected JSON response, received something else.");
-          }
+          return response.json();
         })
         .then((data) => {
-          const moviesToSet = isActive[0]
-            ? data.results.sort((a, b) => a.title.localeCompare(b.title))
-            : data.results;
-          setMovies(moviesToSet);
+          setMovies(data.results);
 
           // Calculate total pages based on total results and desired results per page
           const totalResults = data.total_results || 0;
@@ -40,22 +32,23 @@ const Collections = (props) => {
         })
         .catch((error) => console.error("Error fetching movies:", error));
     },
-    [currentPage, isActive, apiKey]
+    []
   );
 
   useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+    fetchMovies(activeUrl, currentPage);
+  }, [fetchMovies, activeUrl, currentPage]);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected + 1;
     setCurrentPage(selectedPage);
-    fetchMovies(selectedPage);
   };
 
-  const toggleClass = (index) => {
+  const toggleClass = (index, url) => {
     const newState = isActive.map((_, i) => i === index);
     setIsActive(newState);
+    setActiveUrl(url);
+    setCurrentPage(1); // Reset to first page when changing collections
   };
 
   const collections = [
@@ -66,17 +59,17 @@ const Collections = (props) => {
     },
     {
       name: "Now Playing",
-      url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${currentPage}`,
+      url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`,
       icon: <i className="fa-solid fa-film"></i>,
     },
     {
       name: "Top Rated",
-      url: `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${currentPage}`,
+      url: `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US`,
       icon: <i className="fa-solid fa-star"></i>,
     },
     {
       name: "Upcoming",
-      url: `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${currentPage}`,
+      url: `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US`,
       icon: <i className="fa-solid fa-calendar"></i>,
     },
   ];
@@ -87,13 +80,11 @@ const Collections = (props) => {
         {collections.map((collection, index) => (
           <div
             key={index}
-            className={
-              isActive[index] ? "collections-inner active" : "collections-inner"
-            }
+            className={isActive[index] ? "collections-inner active" : "collections-inner"}
             onClick={() => {
               props.setActiveList(collection.name);
               props.setActiveUrl(collection.url);
-              toggleClass(index);
+              toggleClass(index, collection.url);
             }}
           >
             {collection.icon}
