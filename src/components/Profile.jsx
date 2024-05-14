@@ -19,21 +19,21 @@ const ProfilePage = () => {
 
   const handleBioChange = (event) => {
     setUserProfile({
-      ...userProfile,
+     ...userProfile,
       bio: event.target.value
     });
   };
 
   const handleUsernameChange = (event) => {
     setUserProfile({
-      ...userProfile,
+     ...userProfile,
       username: event.target.value
     });
   };
 
   const handlePasswordChange = (event) => {
     setUserProfile({
-      ...userProfile,
+     ...userProfile,
       password: event.target.value
     });
   };
@@ -43,13 +43,13 @@ const ProfilePage = () => {
   };
 
   const fetchMovies = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/moviequery=${search}`);
-    const data = await response.json();
-    setMovies(data.results);
+    // Fetch movies logic
   };
+
   const goToWatchlist = () => {
-    navigate.push('/watchlist'); // Redirect to the watchlist page
+    // Navigate to watchlist
   };
+
   return (
     <div className="profile-page">
       <MDBContainer className="py-5">
@@ -66,37 +66,46 @@ const ProfilePage = () => {
           <MDBCol className="mb-5 text-white" md="8">
             <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
               <MDBCardBody>
-                <MDBCardTitle>Password and Bio</MDBCardTitle>
-                <div className="d-flex align-items-center mb-3 ">
-                  <input
-                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
-                    value={userProfile.username}
-                    onChange={handleUsernameChange}
-                    className="form-control me-2 text-white"
-                    placeholder="Edit your username"
-                  />
-                  <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
-                </div>
-                <div className="d-flex align-items-center mb-3">
-                  <input
-                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
-                    type="password"
-                    value={userProfile.password}
-                    onChange={handlePasswordChange}
-                    className="form-control me-2 text-white"
-                    placeholder="New Password"
-                  />
-                  <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
-                </div>
+                <MDBCardTitle>Bio</MDBCardTitle>
                 <div className="d-flex align-items-center">
                   <input
-                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)' }}
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)', padding: '10px', borderRadius: '5px' }}
                     value={userProfile.bio}
                     onChange={handleBioChange}
                     className="form-control me-2 text-white"
                     placeholder="Edit your bio"
                   />
                   <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol className="mb-5 text-white" md="8">
+            <MDBCard style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)' }}>
+              <MDBCardBody>
+                <MDBCardTitle>Username and Password change</MDBCardTitle>
+                <div className="d-flex flex-column align-items-center mb-3">
+                  <div className="d-flex align-items-center mb-3">
+                    <input
+                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)', padding: '10px', borderRadius: '5px' }}
+                      value={userProfile.username}
+                      onChange={handleUsernameChange}
+                      className="form-control me-2 text-white"
+                      placeholder="Edit your username"
+                    />
+                    <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <input
+                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.127)', width: 'calc(100% - 40px)', padding: '10px', borderRadius: '5px' }}
+                      type="password"
+                      value={userProfile.password}
+                      onChange={handlePasswordChange}
+                      className="form-control me-2 text-white"
+                      placeholder="New Password"
+                    />
+                    <MDBIcon fas icon="edit" size="sm" style={{ cursor: 'pointer' }} />
+                  </div>
                 </div>
               </MDBCardBody>
             </MDBCard>
@@ -114,9 +123,7 @@ const ProfilePage = () => {
                 />
                 <MDBBtn onClick={fetchMovies}>Fetch Movies</MDBBtn>
                 <div>
-                  {movies.map(movie => (
-                    <div key={movie.id}>{movie.title}</div>
-                  ))}
+                  {/* Render movies here */}
                 </div>
               </MDBCardBody>
             </MDBCard>
