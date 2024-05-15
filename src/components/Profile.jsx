@@ -10,10 +10,11 @@ import {
   MDBTypography,
   MDBCardTitle,
   MDBIcon,
-  MDBInput ,
+  MDBInput,
   MDBBtn,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import { FavoritesContext } from "./FavoritesContext"; // Import the context
 // import { MovieContext } from './MoveiContext';
 
 const ProfilePage = () => {
@@ -25,8 +26,9 @@ const ProfilePage = () => {
     avatarUrl:
       "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp",
   });
+  const { favorites, removeFromFavorites } = useContext(FavoritesContext); // Use the context;
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-  const [newPlaylistName, setNewPlaylistName] = useState('');
+  const [newPlaylistName, setNewPlaylistName] = useState("");
   const navigate = useNavigate(); // Use useNavigate hook for redirection
 
   const handleBioChange = (event) => {
@@ -62,7 +64,7 @@ const ProfilePage = () => {
     if (newPlaylistName.trim()) {
       // Assuming addPlaylist is a function provided by MovieContext
       // addPlaylist(newPlaylistName);
-      setNewPlaylistName('');
+      setNewPlaylistName("");
       setShowPlaylistModal(false);
       navigate("/watchlist");
     } else {
@@ -173,14 +175,51 @@ const ProfilePage = () => {
           <MDBCol className="mb-5 text-white" md="8">
             <MDBCard style={{ backgroundColor: "rgba(255, 255, 255, 0.127)" }}>
               <MDBCardBody className="text-center">
-                <MDBCardTitle className="pb-3">My Watchlist</MDBCardTitle>
-                <MDBIcon
-                  fas
-                  icon="plus-circle"
-                  size="2x"
-                  style={{ cursor: "pointer" }}
-                  onClick={goToWatchlist}
-                />
+                <MDBCardTitle className="pb-3">
+                  Watchlist Ng Backburner
+                </MDBCardTitle>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MDBIcon
+                    className="pb-1"
+                    fas
+                    icon="plus-circle"
+                    size="2x"
+                    style={{ cursor: "pointer" }}
+                    onClick={goToWatchlist}
+                  />
+                  <span className="">Add Movie</span>
+                </div>
+                <br />
+
+                <MDBRow className="justify-content-center pt-3">
+                  {favorites.map((movie, i) => (
+                    <MDBCol key={movie.id} md="3" className="mb-4">
+                      <MDBCard
+                        style={{
+                          backgroundColor: "rgba(255, 255, 255, 0.127)",
+                          height: "auto",
+                        }}
+                      >
+                        <MDBCardBody className="text-center">
+                          <MDBCardImage
+                            src={`https://image.tmdb.org/t/p/original/${movie.posterPath}`}
+                            alt={movie.title}
+                            className="img-fluid mb-3"
+                            style={{ cursor: "pointer" }}
+                          />
+                          <MDBTypography tag="h5">{movie.title}</MDBTypography>
+                        </MDBCardBody>
+                      </MDBCard>
+                    </MDBCol>
+                  ))}
+                </MDBRow>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

@@ -5,13 +5,13 @@ export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
-
+  console.log(favorites)
   const addToFavorites = (movie) => {
     setFavorites((prevFavorites) => [...prevFavorites, movie]);
   };
 
-  const removeFromFavorites = (movieId) => {
-    setFavorites((prevFavorites) => prevFavorites.filter(movie => movie.id !== movieId));
+  const removeFromFavorites = (idx) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((movie, i) => i !== idx));
   };
 
   return (

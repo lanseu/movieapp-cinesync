@@ -27,12 +27,12 @@ const WatchList = () => {
               <MDBCardBody className="text-center">
                 <MDBCardTitle className="pb-3">My Watchlist</MDBCardTitle>
                 <MDBRow className="justify-content-center">
-                  {favorites.map((movie) => (
+                  {favorites.map((movie, i) => (
                     <MDBCol key={movie.id} md="3" className="mb-4">
                       <MDBCard
                         style={{
                           backgroundColor: "rgba(255, 255, 255, 0.127)",
-                          height: "400px",
+                          height: "auto",
                         }}
                       >
                         <MDBCardBody className="text-center">
@@ -45,7 +45,7 @@ const WatchList = () => {
                           <MDBTypography tag="h5">{movie.title}</MDBTypography>
                           <MDBBtn
                             color="danger"
-                            onClick={() => removeFromFavorites(movie.id)}
+                            onClick={() => removeFromFavorites(i)}
                           >
                             Remove Movie
                           </MDBBtn>
