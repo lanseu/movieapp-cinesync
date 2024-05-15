@@ -10,6 +10,8 @@ import {
   MDBTypography,
   MDBCardTitle,
   MDBIcon,
+  MDBInput ,
+  MDBBtn,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 // import { MovieContext } from './MoveiContext';
@@ -23,7 +25,8 @@ const ProfilePage = () => {
     avatarUrl:
       "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp",
   });
-
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [newPlaylistName, setNewPlaylistName] = useState('');
   const navigate = useNavigate(); // Use useNavigate hook for redirection
 
   const handleBioChange = (event) => {
@@ -50,6 +53,25 @@ const ProfilePage = () => {
   const goToWatchlist = () => {
     navigate("/watchlist"); // Navigate to watchlist page
     navigate("/WatchList"); // Navigate to watchlist page
+  };
+  const handleNewPlaylistNameChange = (event) => {
+    setNewPlaylistName(event.target.value);
+  };
+
+  const createPlaylist = () => {
+    if (newPlaylistName.trim()) {
+      // Assuming addPlaylist is a function provided by MovieContext
+      // addPlaylist(newPlaylistName);
+      setNewPlaylistName('');
+      setShowPlaylistModal(false);
+      navigate("/watchlist");
+    } else {
+      alert("Please enter a name for the playlist.");
+    }
+  };
+
+  const togglePlaylistModal = () => {
+    setShowPlaylistModal(!showPlaylistModal);
   };
 
   return (

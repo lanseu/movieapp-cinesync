@@ -10,8 +10,10 @@ import {
   MDBCardImage,
   MDBTypography,
   MDBBtn,
+  MDBIcon,
 } from "mdb-react-ui-kit";
 import { FavoritesContext } from "./FavoritesContext"; // Import the context
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const WatchList = () => {
   const { favorites, removeFromFavorites } = useContext(FavoritesContext); // Use the context
@@ -30,6 +32,7 @@ const WatchList = () => {
                       <MDBCard
                         style={{
                           backgroundColor: "rgba(255, 255, 255, 0.127)",
+                          height: "400px",
                         }}
                       >
                         <MDBCardBody className="text-center">
@@ -51,6 +54,11 @@ const WatchList = () => {
                     </MDBCol>
                   ))}
                 </MDBRow>
+                <Link to="/">                               {/*  // Use the context add link going to the main frame */}
+                  <MDBBtn color="white" className="mt-4">
+                    <MDBIcon icon="plus-circle"  style={{ cursor: "pointer" }} size="2x" />
+                  </MDBBtn>
+                </Link>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
