@@ -1,12 +1,10 @@
 /* MovieCarousel.css */
 .carousel-container {
   width: 100%;
-  height: 600px;
+  height: 600px; /* Original sizing from the old code */
   overflow: hidden;
   position: relative;
   z-index: 1;
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-size: cover;
   background-position: center;
   transition: background-image 0.7s ease-in-out;
@@ -18,13 +16,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80%;
+  height: 80%; /* Original sizing from the old code */
   text-align: center;
 }
 
 .carousel-img {
   width: auto;
-  height: 90%;
+  height: 90%; /* Original sizing from the old code */
   object-fit: contain;
   border-radius: 10px;
 }
@@ -34,7 +32,7 @@
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 80%; /* Original sizing from the old code */
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.7);
@@ -42,14 +40,28 @@
   border-radius: 5px;
 }
 
-.carousel-caption h5 {
-  color: #ffd700;
-  font-weight: bolder;
-}
-
-/* Responsive Styles */
+/* Responsive Styles (Old Implementation) */
 @media screen and (max-width: 768px) {
   .carousel-container {
     height: 400px; /* Adjust the height for smaller screens */
+  }
+}
+
+/* Responsive Styles (New Implementation) */
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    height: 100vh; /* Adjusted for responsiveness from the new code */
+  }
+  .carousel-item {
+    width: 80%; /* Adjusted for responsiveness from the new code */
+    margin: 0 auto;
+  }
+  .carousel-img {
+    height: 80%; /* Adjusted for responsiveness from the new code */
+  }
+  .carousel-caption {
+    width: 90%; /* Adjusted for responsiveness from the new code */
+    bottom: 20px; /* Adjusted for responsiveness from the new code */
+    padding: 10px; /* Adjusted for responsiveness from the new code */
   }
 }

@@ -1,4 +1,4 @@
-/* navbar.css */
+/* Navbar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -47,7 +47,7 @@
   background-color: red;
 }
 
-/* Responsive Styles */
+/* Responsive Styles (Old Implementation) */
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -60,5 +60,36 @@
 
   .navbar-right {
     margin-top: 1rem;
+  }
+}
+
+/* Responsive Styles (New Implementation) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .navbar-left {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .search-container {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .yellow-button {
+    margin-bottom: 0.5rem;
   }
 }
