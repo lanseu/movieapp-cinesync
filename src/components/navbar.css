@@ -1,3 +1,4 @@
+/* navbar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -44,4 +45,20 @@
 .logout-button {
   color: white;
   background-color: red;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  .search-container {
+    margin: 1rem 0;
+  }
+
+  .navbar-right {
+    margin-top: 1rem;
+  }
 }
